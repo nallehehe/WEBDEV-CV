@@ -5,7 +5,7 @@ VisualStudioVersion = 17.8.34511.84
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WEBDEV-CV", "WEBDEV-CV\WEBDEV-CV.csproj", "{80AF1CCE-605E-410A-BE35-F36737F300E8}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CV API", "..\CV API\CV API\CV API.csproj", "{36FCCE4D-C4BD-40E9-88B7-D299C40977BB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CV-API", "CV-API\CV-API.csproj", "{BCCA417A-8B7D-42DE-9672-7A55D1A1DA7C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,10 @@ Global
 		{80AF1CCE-605E-410A-BE35-F36737F300E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{80AF1CCE-605E-410A-BE35-F36737F300E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{80AF1CCE-605E-410A-BE35-F36737F300E8}.Release|Any CPU.Build.0 = Release|Any CPU
-		{36FCCE4D-C4BD-40E9-88B7-D299C40977BB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{36FCCE4D-C4BD-40E9-88B7-D299C40977BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{36FCCE4D-C4BD-40E9-88B7-D299C40977BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{36FCCE4D-C4BD-40E9-88B7-D299C40977BB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BCCA417A-8B7D-42DE-9672-7A55D1A1DA7C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BCCA417A-8B7D-42DE-9672-7A55D1A1DA7C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BCCA417A-8B7D-42DE-9672-7A55D1A1DA7C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BCCA417A-8B7D-42DE-9672-7A55D1A1DA7C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

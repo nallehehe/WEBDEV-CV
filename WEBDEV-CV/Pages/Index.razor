@@ -1,4 +1,5 @@
 ﻿@page "/"
+@using WEBDEV_CV.Models
 @inject HttpClient HttpClient
 
 <PageTitle>Index</PageTitle>
@@ -55,7 +56,13 @@
 
                             <p class="detail-question">SKILLS</p>
                             <ul>
-                                
+                                @if (skills != null)
+                                {
+                                    @foreach (var skill in skills)
+                                    {
+                                        <li>@skill.Name - @skill.Experience - @skill.Level</li>
+                                    }
+                                }
                             </ul>
                         </div>
                     </div>
@@ -64,3 +71,20 @@
         </div>
     </div>
 </div>
+
+@code {
+    private List<Skills> skills;
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            skills = await HttpClient.GetFromJsonAsync<List<Skills>>("skills");
+        }
+        catch (Exception ex)
+        {
+            // Handle exception
+            Console.WriteLine($"Error: {ex.Message}");
+        }
+    }
+}
