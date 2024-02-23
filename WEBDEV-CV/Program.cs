@@ -26,9 +26,9 @@ namespace WEBDEV_CV
             builder.Services.AddServerSideBlazor();
             builder.Services.AddScoped<AuthenticationStateProvider, RevalidatingIdentityAuthenticationStateProvider<IdentityUser>>();
             builder.Services.AddSingleton<WeatherForecastService>();
-            builder.Services.AddHttpClient("CV API", client =>
+            builder.Services.AddHttpClient("CV-API", client =>
             {
-                client.BaseAddress = new Uri("https://localhost:7267");
+                client.BaseAddress = new Uri("https://localhost:7032");
             });
 
             var app = builder.Build();
@@ -57,7 +57,10 @@ namespace WEBDEV_CV
             app.MapBlazorHub();
             app.MapFallbackToPage("/_Host");
 
+
+
             app.Run();
+
         }
     }
 }

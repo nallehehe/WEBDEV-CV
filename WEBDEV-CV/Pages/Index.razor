@@ -1,90 +1,134 @@
 ﻿@page "/"
 @using WEBDEV_CV.Models
+@using System.Text.Json.Serialization
+@using Newtonsoft.Json
 @inject HttpClient HttpClient
+@inject IHttpClientFactory factory
 
 <PageTitle>Index</PageTitle>
 
-<div class="container">
-    <div class="d-flex justify-content-center">
-        <h1>Application Form</h1>
+<div class="container justify-content-center align-items-center">
+    <div>
+        <span class="dot"></span>
+        <img src="/images/CVimage.png" alt="casual picture before professional one arrives" class="CVimage"/>
     </div>
-    <div class="d-flex justify-content-center">
-        <div class="rectangle-form-border">
-            <div class="rectangle-form">
-                <div class="images">
-                    <img src="/images/CVimage.jpg" alt="placeholder for CV image" class="image" />
-                </div>
-                <div class="name justify-content-center align-items-center flex-column">
-                    <p class="detail-question">FULL NAME</p>
-                    <p class="details">Alexander Angove Lilja</p>
-                    <p class="detail-question">AGE</p>
-                    <p class="details">98 / 12 / 16</p>
-                    <p class="detail-question">CURRENT OCCUPATION</p>
-                    <p class="details">Student</p>
-                    <p class="detail-question">CONTACT</p>
-                    <p class="details">alexander.a.lilja@gmail.com</p>
-                    <p class="details">0707289707</p>
-                </div>
-                <div class="justify-content-center align-items-center flex-column">
-                    <p class="about">ABOUT</p>
-                    <div class="description justify-content-center align-items-center flex-column">
-                        <p>Hi there, I'm Alexander! I'm currently a student at IT-Högskolan at Göteborg studying to become a .NET Cloud Developer. My previous work experiences lie in hospitality where I've learned skills such as being very flexible in my work, always finding solutions, patience, and communication that have benefited me throughout life since then.</p>
-                        <p>During my free time, I spend a lot of it watching movies with friends, playing video games, and spending time with my friends. During my time at IT-Högskolan I've developed a curiosity for coding and I'm excited to continue the journey, develop and learn more.</p>
-                    </div>
-                </div>
-                <div class="project justify-content-center align-items-center flex-column">
-                    <div class="description name justify-content-center align-items-center flex-column">
-                        <div class>
-                            <p class="detail-question">PROJECTS</p>
-                            <p class="detail-question">C#</p>
-                            <p>
-                                We got the task to develop a graphic quiz game application in WPF where I had to implement features such as playing,
-                                editing and creating the quizzes using a data serialization of our own choosing to save and load the data.
-                            </p>
-                            <p class="detail-question">DATABASE MANAGEMENT</p>
-                            <p>
-                                This task required me to repurpose my C# quiz game but instead of using data serialization we made use of
-                                databases such as MongoDB to store our data in instead. Making the quiz game work but with an external
-                                program to store it's data in.
-                            </p>
-                            <p class="detail-question">WEB DEVELOPMENT</p>
-                            <p>
-                                Our last lab for the most recent course had us make our own CV websites to use and show potential future internships.
-                                We were made to make a fullstack SPA application using blazor as our frontend with different requirements of
-                                things to implement that we've learned throughout previous courses and this one.
-                            </p>
 
-                            <p class="detail-question">SKILLS</p>
-                            <ul>
-                                @if (skills != null)
-                                {
-                                    @foreach (var skill in skills)
-                                    {
-                                        <li>@skill.Name - @skill.Experience - @skill.Level</li>
-                                    }
-                                }
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <div class="contact">
+        <h2>Alexander Angove Lilja</h2>
+        <h2>16/12/98</h2>
+        <h2>alexander.a.lilja@gmail.com</h2>
+        <h2>0707289707</h2>
+        <a href="https://github.com/nallehehe"><img src="/images/github-logo-red.png" alt="github logo link" class="icon" /></a>
+        <a href="https://www.linkedin.com/in/alexander-angove-lilja-82151b201/"><img src="/images/linkedin-logo-red.png" alt="linkedin logo link" class="icon" /></a>
+    </div>
+    <div>
+        <img src="/images/about-me-logo.png" alt="about me logo" class="aboutmeicon" />
+        <div class="aboutme">
+            <p>Hi there, I'm Alexander! I'm currently a student at IT-Högskolan at Göteborg studying to become a .NET Cloud Developer. My previous work experiences lie in hospitality where I've learned skills such as being very flexible in my work, always finding solutions, patience, and communication that have benefited me throughout life since then.</p>
+            <p>In my free time, I spend a lot of it watching movies with friends, playing video games, and spending time with my friends. During my time at IT-Högskolan I've developed a curiosity for coding and I'm excited to continue the journey, develop and learn more.</p>
+        </div>
+    </div>
+    <div>
+        <img src="/images/computer-logo.png" alt="project logo" class="projecticon" />
+        <div class="projects">
+            <h3>C#</h3>
+            <p>
+                We got a lab to develop a graphic quiz game application in WPF where I had to implement features such as playing,
+                editing and creating the quizzes using a data serialization of our own choosing to save and load the data.
+            </p>
+            <h3>DATABASE MANAGEMENT</h3>
+            <p>
+                This lab required me to repurpose my C# quiz game but instead of using data serialization we made use of
+                databases such as MongoDB to store our data in instead. Making the quiz game work but with an external
+                program to store it's data in.
+            </p>
+            <h3>WEB DEVELOPMENT</h3>
+            <p>
+                Our last lab for the most recent course had us make our own CV websites to use and show potential future internships.
+                We were made to make a fullstack SPA application using blazor as our frontend with different requirements of
+                things to implement that we've learned throughout previous courses and this one.
+            </p>
+        </div>
+    </div>
+
+    <div>
+        <img src="/images/skills-pin.png" alt="pin logo for skills" class="skillsicon" />
+        <div class="skills">
+            <h3>SKILLS</h3>
+            @foreach (var skill in skills)
+            {
+                <p>@skill.Name - @skill.Experience - @skill.Level</p>
+            }
         </div>
     </div>
 </div>
 
+<AuthorizeView Context="authContext">
+    <div class="form-length">
+        <h3>Create Skill</h3>
+        <EditForm EditContext="editContext" Model="@newSkills" OnValidSubmit="@SubmitSkill">
+            <DataAnnotationsValidator />
+            <ValidationSummary />
+
+            <div>
+                <label>Skill name:</label>
+                <InputText class="form-control" @bind-Value="newSkills.Name"></InputText>
+                <ValidationMessage For="@(() => newSkills.Name)" />
+            </div>
+
+            <div>
+                <label>How long have you done this:</label>
+                <InputText class="form-control" @bind-Value="newSkills.Experience"></InputText>
+                <ValidationMessage For="@(() => newSkills.Experience)" />
+            </div>
+
+            <div>
+                <label>What level of experience do you have?</label>
+                <InputText class="form-control" @bind-Value="newSkills.Level"></InputText>
+                <ValidationMessage For="@(() => newSkills.Level)" />
+            </div>
+
+            <button class="btn btn-primary" type="submit">Create</button>
+        </EditForm>
+    </div>
+</AuthorizeView>
+
 @code {
-    private List<Skills> skills;
+    private EditContext? editContext;
+    private List<Skills> skills { get; set; }
+    private Skills newSkills { get; set; } = new Skills();
+    HttpClient http;
 
     protected override async Task OnInitializedAsync()
     {
-        try
+        http = factory.CreateClient("CV-API");
+        var response = http.GetAsync("/skills").GetAwaiter().GetResult();
+        if (response.IsSuccessStatusCode)
         {
-            skills = await HttpClient.GetFromJsonAsync<List<Skills>>("skills");
+            var content = await response.Content.ReadAsStringAsync();
+            skills = JsonConvert.DeserializeObject<List<Skills>>(content);
         }
-        catch (Exception ex)
+        else
         {
-            // Handle exception
-            Console.WriteLine($"Error: {ex.Message}");
+            Console.WriteLine("Skills could not be retrieved.");
+        }
+    }
+
+    private async Task SubmitSkill()
+    {
+        var response = await http.PostAsJsonAsync("/skill", newSkills);
+
+        if (response.IsSuccessStatusCode)
+        {
+            newSkills.Name = "";
+            newSkills.Experience = "";
+            newSkills.Level = "";
+
+            Console.WriteLine("Skill was successfully created!");
+        }
+        else
+        {
+            Console.WriteLine("Skill could not be created.");
         }
     }
 }

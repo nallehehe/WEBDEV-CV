@@ -1,67 +1,89 @@
 @import url('open-iconic/font/css/open-iconic-bootstrap.min.css');
 
-html, body {
+body {
     font-family: "Times New Roman", Times, serif;
+    z-index: -1;
 }
 
-.container {
-    flex-direction: row;
-    font-size: 17px;
+.link-color {
+    color: #FF0000;
+    text-decoration: none;
 }
 
-.rectangle-form-border {
-    border: 5px solid #000;
-    padding: 0;
-    width: fit-content;
+.CVimage {
+    margin-top: 140px;
+    margin-left: 130px;
+    max-width: 350px;
+    max-height: 370px;
+    position: absolute;
 }
 
-.details {
-    border: 2px solid #000;
-    padding: 7px;
+.form-length {
+    inline-size: 250px;
 }
 
-.detail-question {
-    font-weight: bold;
+.aboutme {
+    position: absolute;
+    margin-left: 530px;
+    top: 150px;
+    inline-size: 350px;
 }
 
-.about {
-    text-align: center;
-    font-weight: bold;
+.aboutmeicon {
+    position: absolute;
+    max-width: 50px;
+    margin-left: 490px;
+    top: 115px;
 }
 
-.name {
-    text-align: center;
+.projects {
+    position: absolute;
+    margin-left: 930px;
+    top: 150px;
+    inline-size: 350px;
 }
 
-.description {
+.projecticon {
+    position: absolute;
+    max-width: 25px;
+    margin-left: 905px;
+    top: 125px;
+}
+
+.skills {
+    position: absolute;
+    margin-left: 530px;
+    top: 570px;
+    inline-size: 350px;
+}
+
+.skillsicon {
+    position: absolute;
+    max-width: 25px;
+    margin-left: 505px;
+    top: 550px;
+}
+
+.icon {
+    max-width: 50px;
+}
+
+.dot {
+    position: absolute;
+    top: 150px;
+    margin-left: 50px;
+    height: 400px;
+    width: 400px;
+    background-color: #FFD700;
+    border-radius: 50%;
+    display: inline-block;
+    z-index: 0;
+}
+
+.contact {
+    position: absolute;
     margin-left: 100px;
-    max-width: 500px;
-    word-wrap: break-word;
-    text-align: justify;
-    margin-bottom: 1px;
-}
-
-.rectangle-form {
-    width: fit-content;
-    width: 1800px;
-    padding: 20px;
-    height: 850px;
-    display: flex;
-    background-color: #ffffff;
-}
-
-.content {
-    padding-top: 1.1rem;
-}
-
-.image {
-    margin-top: 20px;
-    margin-left: 40px;
-    margin-right: 60px;
-    max-width: calc(100% - 10px);
-    max-height: 500px;
-    border: 5px solid black;
-    box-sizing: border-box;
+    margin-top: 550px;
 }
 
 .valid.modified:not([type=checkbox]) {
