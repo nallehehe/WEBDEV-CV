@@ -28,7 +28,7 @@ namespace WEBDEV_CV
             builder.Services.AddSingleton<WeatherForecastService>();
             builder.Services.AddHttpClient("CV-API", client =>
             {
-                client.BaseAddress = new Uri("https://localhost:7032");
+                client.BaseAddress = new Uri("https://blazorapis.azurewebsites.net");
             });
 
             var app = builder.Build();

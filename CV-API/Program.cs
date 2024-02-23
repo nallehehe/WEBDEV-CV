@@ -23,11 +23,14 @@ namespace CV_API
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
-            if (app.Environment.IsDevelopment())
+            /*if (app.Environment.IsDevelopment())
             {
                 app.UseSwagger();
                 app.UseSwaggerUI();
-            }
+            }*/
+
+            app.UseSwagger();
+            app.UseSwaggerUI();
 
             app.UseHttpsRedirection();
 
@@ -51,11 +54,11 @@ namespace CV_API
                 return Results.Ok(books);
             });
 
-            app.MapPost("/skill", async ([FromBody] Skills book, [FromServices] ApplicationDbContext dbContext) =>
+            app.MapPost("/skill", async ([FromBody] Skills skill, [FromServices] ApplicationDbContext dbContext) =>
             {
-                dbContext.Skills.Add(book);
+                dbContext.Skills.Add(skill);
                 await dbContext.SaveChangesAsync();
-                return Results.Ok(book);
+                return Results.Ok(skill);
             });
 
             app.MapPut("/skills/{id}", async ([FromRoute] int id, [FromBody] Skills skills, [FromServices] ApplicationDbContext dbContext) =>
